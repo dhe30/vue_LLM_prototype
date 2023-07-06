@@ -6,7 +6,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  
+  apiKey: "AIzaSyDfonClMXcSS3OLdfyZTmraxtSfLBZ5-2c",
+  authDomain: "vue-firestore-cd18b.firebaseapp.com",
+  projectId: "vue-firestore-cd18b",
+  storageBucket: "vue-firestore-cd18b.appspot.com",
+  messagingSenderId: "930851007410",
+  appId: "1:930851007410:web:dc5a74075b78acd34a12ab"
 };
 
 // Initialize Firebase

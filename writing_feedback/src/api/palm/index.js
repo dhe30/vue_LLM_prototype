@@ -39,11 +39,12 @@ const call_PaLM2 = async (prompt) => {
         })
         .then(response => {
           console.log(response)
-          return response
+          return response.candidates[0].content
         }
         )
         .catch(err => {
           console.log(err.message)
+          return err.message
         }
         )
 }

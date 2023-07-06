@@ -11,7 +11,17 @@ export default createStore({
           key: 'N/a'
         }, 
         { 
-          name: 'Test1',
+          name: 'Jurassic2',
+          endpoint: 'N/a', 
+          key: 'N/a'
+        }, 
+        { 
+          name: 'chatGTP',
+          endpoint: 'N/a', 
+          key: 'N/a'
+        }, 
+        { 
+          name: 'cohere',
           endpoint: 'N/a', 
           key: 'N/a'
         }

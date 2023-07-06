@@ -9,14 +9,14 @@
         <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
             <b-button-group v-for="api in apis" :key="api.name">
-                <b-button @click="$emit('chooseAPI', api.name)" :variant="api.name === selectedAPI? 'primary': 'outline-primary'"> {{ api.name }}</b-button>
+                <b-button pill @click="$emit('chooseAPI', api.name)" :variant="api.name === selectedAPI? 'primary': 'outline-primary'"> {{ api.name }}</b-button>
             </b-button-group>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
             <b-button-group>
-                <b-button disabled> Automate </b-button>
+                <b-button @click="$emit('automate')" :variant="automated? 'dark' : 'secondary'"> {{ automated? 'Automating':'Automate' }} <a v-if="automated"><b-spinner variant="success" type="grow" small></b-spinner></a></b-button>
                 <b-button @click="$emit('disable')" :variant="disable? 'success' : 'danger'"> {{ disable? 'Disabled' : 'Disable' }} </b-button>
             </b-button-group>
         </b-navbar-nav>
@@ -29,7 +29,7 @@
 import { ref } from 'vue'
 export default {
     name: 'NavBar',
-    props: [ 'apis', 'selectedAPI', 'disable' ]
+    props: [ 'apis', 'selectedAPI', 'disable', 'automated' ]
 }
 </script>
 
