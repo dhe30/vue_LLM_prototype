@@ -4,7 +4,11 @@
     <b-row>
       <b-col>
         <b-form @submit.prevent="invokeSelectedAPI()">
-          <label class="text-label"> Start writing here: {{ checker }}</label>
+          <label class="text-label"> {{ automated? changes >= 200? 'Finish your sentence:' : 'Fill bar to call API:' : `Start writing here: ${checker}`}}</label>
+          <div v-if="automated">
+            <b-progress id="bar" :value="changes" :max="200" animated height="7px" label="Here" style="position: relative; top: -5px">
+            </b-progress>
+          </div>
           <b-form-textarea @keyup="handleText" @paste="handlePaste" id="text-area" type="text" v-model="essay" rows="14" :state="!error? !(essay.trim() === preEssay && prePrompt.trim() === preprePrompt): null"></b-form-textarea>
           <b-overlay id="invoke-button" :show="loading" rounded opacity="0.6" spinner-small spinner-variant="primary" class="d-inline-block">
             <b-button type="submit" :disabled="loading"> Invoke API </b-button>
@@ -64,7 +68,7 @@
                     <b-skeleton animation="wave" width="70%"></b-skeleton>
                   </b-card>
                 <div v-for="response in responses" :key="response.prompt">
-                  <b-alert show class="big-idea" style="margin: 5px; text-align: left; font-size: 14px;letter-spacing: 0.12em; word-spacing: 0.16em; line-height: 1.8em;">
+                  <b-alert show class="big-idea" style="margin: 5px; text-align: left; font-size: 14px;letter-spacing: 0.12em; word-spacing: 0.16em; line-height: 1.8em; width: 40vw;">
                     <b-badge variant="light" style="color: black; background-color: rgba(255, 241, 48, 0.69);">{{ response.API}}</b-badge>
                     {{response.output}}
                   </b-alert>
@@ -290,7 +294,7 @@ export default {
       prePrompt, responses, loading, tumble, previousPrompt, error,
       preprePrompt, preEssay,
       handleText, handlePaste, lock, set_prompt,
-      handle_set_prompt
+      handle_set_prompt, changes
      }
   }
 }
